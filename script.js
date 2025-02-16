@@ -45,6 +45,8 @@ function renderCars() {
             categoryContainer.appendChild(carItem);
         });
     });
+
+    updateButtons(); // ボタン表示を更新
 }
 
 // ソート条件に基づいて比較する関数
@@ -63,18 +65,39 @@ function compareCars(a, b) {
 // 並び替えモードを切り替える
 function toggleSort() {
     sortMode = sortMode === "name" ? "price" : "name";
-    
-    // 並び替えボタンのテキストを更新
-    document.getElementById("sortButton").textContent = sortMode === "name" ? "A-Z" : "価格";
-    
     renderCars();
 }
 
 // 昇順・降順を切り替える
 function toggleOrder() {
     orderMode = orderMode === "asc" ? "desc" : "asc";
-    document.getElementById("orderButton").textContent = orderMode === "asc" ? "昇順" : "降順";
     renderCars();
+}
+
+// ボタンの表示を更新
+function updateButtons() {
+    const sortButtonAtoZ = document.getElementById("sortButtonAtoZ");
+    const sortButtonPrice = document.getElementById("sortButtonPrice");
+    const orderButtonAsc = document.getElementById("orderButtonAsc");
+    const orderButtonDesc = document.getElementById("orderButtonDesc");
+
+    // 並び替えボタンの表示を切り替え
+    if (sortMode === "name") {
+        sortButtonAtoZ.style.display = "inline-block";
+        sortButtonPrice.style.display = "none";
+    } else {
+        sortButtonAtoZ.style.display = "none";
+        sortButtonPrice.style.display = "inline-block";
+    }
+
+    // 昇順・降順ボタンの表示を切り替え
+    if (orderMode === "asc") {
+        orderButtonAsc.style.display = "inline-block";
+        orderButtonDesc.style.display = "none";
+    } else {
+        orderButtonAsc.style.display = "none";
+        orderButtonDesc.style.display = "inline-block";
+    }
 }
 
 // カテゴリを切り替える
