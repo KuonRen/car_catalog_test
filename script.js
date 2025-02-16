@@ -63,14 +63,17 @@ function compareCars(a, b) {
 // 並び替えモードを切り替える
 function toggleSort() {
     sortMode = sortMode === "name" ? "price" : "name";
-    document.getElementById("sortButton").textContent = sortMode === "name" ? "A-Z / 価格" : "価格 / A-Z";
+    
+    // 並び替えボタンのテキストを更新
+    document.getElementById("sortButton").textContent = sortMode === "name" ? "A-Z" : "価格";
+    
     renderCars();
 }
 
 // 昇順・降順を切り替える
 function toggleOrder() {
     orderMode = orderMode === "asc" ? "desc" : "asc";
-    document.getElementById("orderButton").textContent = orderMode === "asc" ? "昇順 / 降順" : "降順 / 昇順";
+    document.getElementById("orderButton").textContent = orderMode === "asc" ? "昇順" : "降順";
     renderCars();
 }
 
