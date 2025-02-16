@@ -9,6 +9,36 @@
       "name": "sample2",
       "price": "$120,000",
       "image": "example.png"
+    },
+    {
+      "name": "sample3",
+      "price": "$120,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample4",
+      "price": "$120,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample5",
+      "price": "$120,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample6",
+      "price": "$120,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample7",
+      "price": "$120,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample8",
+      "price": "$120,000",
+      "image": "example.png"
     }
   ],
   "super": [
@@ -19,6 +49,26 @@
     },
     {
       "name": "sample10",
+      "price": "$300,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample11",
+      "price": "$300,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample12",
+      "price": "$300,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample13",
+      "price": "$300,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample14",
       "price": "$300,000",
       "image": "example.png"
     }
@@ -33,6 +83,26 @@
       "name": "sample16",
       "price": "$20,000",
       "image": "example.png"
-    }
+    },
+    {
+      "name": "sample17",
+      "price": "$20,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample18",
+      "price": "$20,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample19",
+      "price": "$20,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample20",
+      "price": "$20,000",
+      "image": "example.png"
+    },
   ]
 }
