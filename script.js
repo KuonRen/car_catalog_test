@@ -52,10 +52,12 @@ function renderCars() {
 // ソート条件に基づいて比較する関数
 function compareCars(a, b) {
     if (sortMode === "name") {
+        // 名前の比較を大文字小文字無視で行う
         let nameA = a.name.toLowerCase();
         let nameB = b.name.toLowerCase();
-        return orderMode === "asc" ? nameA.localeCompare(nameB, "ja") : nameB.localeCompare(nameA, "ja");
+        return orderMode === "asc" ? nameA.localeCompare(nameB, 'ja') : nameB.localeCompare(nameA, 'ja');
     } else {
+        // 価格を取り出して数値に変換する処理
         let priceA = parseInt(a.price.replace(/[^0-9]/g, ""), 10);
         let priceB = parseInt(b.price.replace(/[^0-9]/g, ""), 10);
         return orderMode === "asc" ? priceA - priceB : priceB - priceA;
