@@ -78,12 +78,19 @@ function searchCar() {
     }
 }
 
-// ソート機能
+// 並び替え機能
 let sortMode = "name"; // 初期状態はA-Z順
+let orderMode = "asc"; // 初期状態は昇順
 
 function toggleSort() {
     sortMode = sortMode === "name" ? "price" : "name";
     document.getElementById("sortButton").textContent = sortMode === "name" ? "A-Z / 価格" : "価格 / A-Z";
+    sortCars();
+}
+
+function toggleOrder() {
+    orderMode = orderMode === "asc" ? "desc" : "asc";
+    document.getElementById("orderButton").textContent = orderMode === "asc" ? "昇順 / 降順" : "降順 / 昇順";
     sortCars();
 }
 
@@ -98,11 +105,11 @@ function sortCars() {
             if (sortMode === "name") {
                 let nameA = a.querySelector(".car-name").textContent.toLowerCase();
                 let nameB = b.querySelector(".car-name").textContent.toLowerCase();
-                return nameA.localeCompare(nameB, "ja"); // 日本語対応
+                return orderMode === "asc" ? nameA.localeCompare(nameB, "ja") : nameB.localeCompare(nameA, "ja");
             } else {
                 let priceA = parseInt(a.querySelector(".car-price").textContent.replace(/[^0-9]/g, ""));
                 let priceB = parseInt(b.querySelector(".car-price").textContent.replace(/[^0-9]/g, ""));
-                return priceA - priceB; // 価格順
+                return orderMode === "asc" ? priceA - priceB : priceB - priceA;
             }
         });
 
@@ -117,4 +124,3 @@ window.onload = function() {
     const sportsButton = document.querySelector("button[onclick=\"showCategory('sports', this)\"]");
     showCategory('sports', sportsButton);
 };
-
