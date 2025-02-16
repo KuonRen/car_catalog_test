@@ -48,7 +48,6 @@ body {
     transform: scale(1.05);
 }
 
-/* 検索バーのスタイル */
 .search-container {
     display: flex;
     justify-content: center;
@@ -84,7 +83,6 @@ body {
     transform: scale(1.05);
 }
 
-/* 並び替えボタンのスタイル */
 .sort-container {
     display: flex;
     justify-content: center;
@@ -143,7 +141,7 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: rgb(3, 252, 170);
+    color: #03FCA5;
     margin-top: 10px;
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.2);
 }
@@ -153,12 +151,11 @@ body {
     font-size: 1.8rem;
     margin-top: 10px;
     font-weight: 700;
-    color: rgb(161, 3, 252);
+    color: #FCDD03;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
     letter-spacing: 1px;
 }
 
-/* スマホ向けレスポンシブ調整 */
 @media (max-width: 768px) {
     .header {
         font-size: 2rem;
