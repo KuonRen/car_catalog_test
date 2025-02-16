@@ -1,0 +1,38 @@
+{
+  "sports": [
+    {
+      "name": "久遠 蓮",
+      "price": "$0",
+      "image": "IMG_0425.jpeg"
+    },
+    {
+      "name": "sample2",
+      "price": "$120,000",
+      "image": "example.png"
+    }
+  ],
+  "super": [
+    {
+      "name": "sample9",
+      "price": "$300,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample10",
+      "price": "$300,000",
+      "image": "example.png"
+    }
+  ],
+  "bike": [
+    {
+      "name": "sample15",
+      "price": "$20,000",
+      "image": "example.png"
+    },
+    {
+      "name": "sample16",
+      "price": "$20,000",
+      "image": "example.png"
+    }
+  ]
+}
