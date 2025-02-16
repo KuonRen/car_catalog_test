@@ -20,8 +20,14 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="車両名を検索">
         <button onclick="searchCar()">検索</button>
-        <button id="sortButton" onclick="toggleSort()">A-Z</button>
-        <button id="orderButton" onclick="toggleOrder()">昇順</button>
+        
+        <!-- 並び替えボタン -->
+        <button id="sortButtonAtoZ" onclick="toggleSort()">A-Z</button>
+        <button id="sortButtonPrice" onclick="toggleSort()" style="display: none;">価格</button>
+
+        <!-- 昇順・降順ボタン -->
+        <button id="orderButtonAsc" onclick="toggleOrder()">昇順</button>
+        <button id="orderButtonDesc" onclick="toggleOrder()" style="display: none;">降順</button>
     </div>
 
     <div id="sports" class="catalog"></div>
