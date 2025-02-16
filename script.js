@@ -54,8 +54,8 @@ function compareCars(a, b) {
         let nameB = b.name.toLowerCase();
         return orderMode === "asc" ? nameA.localeCompare(nameB, "ja") : nameB.localeCompare(nameA, "ja");
     } else {
-        let priceA = parseInt(a.price.replace(/[^0-9]/g, ""));
-        let priceB = parseInt(b.price.replace(/[^0-9]/g, ""));
+        let priceA = parseInt(a.price.replace(/[^0-9]/g, ""), 10);
+        let priceB = parseInt(b.price.replace(/[^0-9]/g, ""), 10);
         return orderMode === "asc" ? priceA - priceB : priceB - priceA;
     }
 }
