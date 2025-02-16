@@ -55,12 +55,14 @@ body {
     align-items: center;
     margin: 10px;
     gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
 }
 
 .search-container input {
     padding: 10px;
-    width: 60%;
-    max-width: 400px;
+    flex: 1;
     border-radius: 5px;
     border: none;
     font-size: 1rem;
@@ -150,13 +152,15 @@ body {
         justify-content: center;
         align-items: center;
         width: 90%;
+        max-width: 400px;
     }
     .search-container input {
-        width: 75%;
-        min-width: 200px;
+        flex: 1;
+        min-width: 150px;
     }
     .search-container button {
         width: auto;
+        white-space: nowrap;
     }
     .catalog {
         flex-direction: column;
