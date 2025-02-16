@@ -146,14 +146,15 @@ body {
         font-size: 1rem;
     }
     .search-container {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
     }
     .search-container input {
-        width: 90%;
+        width: 70%;
     }
     .search-container button {
-        width: 50%;
+        width: auto;
     }
     .catalog {
         flex-direction: column;
