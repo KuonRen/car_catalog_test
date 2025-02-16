@@ -3,12 +3,12 @@
     {
       "name": "a",
       "price": "$0",
-      "image": "testp.avif"
+      "image": "test.avif"
     },
     {
       "name": "b",
       "price": "$5,000",
-      "image": "testp.avif"
+      "image": "test.avif"
     },
     {
       "name": "c",
