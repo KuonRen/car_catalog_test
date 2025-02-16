@@ -1,1 +1,1 @@
-# car_catalog_test
+・車両の画像は1280x720pxで.AVIFに圧縮してから使用
