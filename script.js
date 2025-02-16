@@ -1,21 +1,29 @@
+let carsData = {}; // JSONデータを保持する変数
+let sortMode = "name"; // デフォルトの並び順（A-Z）
+let orderMode = "asc"; // デフォルトの昇順
+
 // JSONデータの読み込み関数
 async function loadCarsData() {
     try {
-        const response = await fetch('cars.json'); // cars.jsonを読み込む
-        const data = await response.json();
-        populateCars(data);
+        const response = await fetch('cars.json'); // JSONデータを取得
+        carsData = await response.json();
+        renderCars(); // 初期データを表示
     } catch (error) {
         console.error("Error loading the car data:", error);
     }
 }
 
-// 車両データをHTMLに反映する関数
-function populateCars(data) {
-    Object.keys(data).forEach(category => {
+// 車両データをHTMLに反映する関数（並び替え対応）
+function renderCars() {
+    Object.keys(carsData).forEach(category => {
         const categoryContainer = document.getElementById(category);
-        categoryContainer.innerHTML = ''; // 現在のコンテンツをクリア
+        categoryContainer.innerHTML = ''; // 一度リセット
 
-        data[category].forEach(car => {
+        // ソートしたデータを取得
+        let sortedCars = [...carsData[category]];
+        sortedCars.sort(compareCars);
+
+        sortedCars.forEach(car => {
             const carItem = document.createElement('div');
             carItem.classList.add('car-item');
 
@@ -39,7 +47,34 @@ function populateCars(data) {
     });
 }
 
-// カテゴリを切り替える関数
+// ソート条件に基づいて比較する関数
+function compareCars(a, b) {
+    if (sortMode === "name") {
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+        return orderMode === "asc" ? nameA.localeCompare(nameB, "ja") : nameB.localeCompare(nameA, "ja");
+    } else {
+        let priceA = parseInt(a.price.replace(/[^0-9]/g, ""));
+        let priceB = parseInt(b.price.replace(/[^0-9]/g, ""));
+        return orderMode === "asc" ? priceA - priceB : priceB - priceA;
+    }
+}
+
+// 並び替えモードを切り替える
+function toggleSort() {
+    sortMode = sortMode === "name" ? "price" : "name";
+    document.getElementById("sortButton").textContent = sortMode === "name" ? "A-Z / 価格" : "価格 / A-Z";
+    renderCars();
+}
+
+// 昇順・降順を切り替える
+function toggleOrder() {
+    orderMode = orderMode === "asc" ? "desc" : "asc";
+    document.getElementById("orderButton").textContent = orderMode === "asc" ? "昇順 / 降順" : "降順 / 昇順";
+    renderCars();
+}
+
+// カテゴリを切り替える
 function showCategory(category, button) {
     document.querySelectorAll('.catalog').forEach(catalog => {
         catalog.style.display = 'none';
@@ -47,6 +82,7 @@ function showCategory(category, button) {
     document.querySelectorAll('.category-buttons button').forEach(btn => {
         btn.classList.remove('active');
     });
+
     document.getElementById(category).style.display = 'flex';
     button.classList.add('active');
 }
@@ -57,20 +93,18 @@ function searchCar() {
     let allCategories = ['sports', 'super', 'bike'];
     let found = false;
 
-    // 各カテゴリを確認して検索
     for (let category of allCategories) {
         let allCars = document.querySelectorAll(`#${category} .car-item`);
         for (let car of allCars) {
             let carName = car.querySelector('.car-name').textContent.toLowerCase();
             if (carName.includes(searchQuery)) {
-                // 見つかった車両があるカテゴリを表示
                 showCategory(category, document.querySelector(`button[onclick="showCategory('${category}', this)"]`));
                 car.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 found = true;
                 break;
             }
         }
-        if (found) break;  // 車両が見つかったらループを抜ける
+        if (found) break;
     }
 
     if (!found) {
@@ -78,49 +112,9 @@ function searchCar() {
     }
 }
 
-// 並び替え機能
-let sortMode = "name"; // 初期状態はA-Z順
-let orderMode = "asc"; // 初期状態は昇順
-
-function toggleSort() {
-    sortMode = sortMode === "name" ? "price" : "name";
-    document.getElementById("sortButton").textContent = sortMode === "name" ? "A-Z / 価格" : "価格 / A-Z";
-    sortCars();
-}
-
-function toggleOrder() {
-    orderMode = orderMode === "asc" ? "desc" : "asc";
-    document.getElementById("orderButton").textContent = orderMode === "asc" ? "昇順 / 降順" : "降順 / 昇順";
-    sortCars();
-}
-
-function sortCars() {
-    let categories = ["sports", "super", "bike"];
-
-    categories.forEach(category => {
-        let container = document.getElementById(category);
-        let cars = Array.from(container.getElementsByClassName("car-item"));
-
-        cars.sort((a, b) => {
-            if (sortMode === "name") {
-                let nameA = a.querySelector(".car-name").textContent.toLowerCase();
-                let nameB = b.querySelector(".car-name").textContent.toLowerCase();
-                return orderMode === "asc" ? nameA.localeCompare(nameB, "ja") : nameB.localeCompare(nameA, "ja");
-            } else {
-                let priceA = parseInt(a.querySelector(".car-price").textContent.replace(/[^0-9]/g, ""));
-                let priceB = parseInt(b.querySelector(".car-price").textContent.replace(/[^0-9]/g, ""));
-                return orderMode === "asc" ? priceA - priceB : priceB - priceA;
-            }
-        });
-
-        // 並び替えた要素を再配置
-        cars.forEach(car => container.appendChild(car));
-    });
-}
-
 // ページ読み込み時の処理
 window.onload = function() {
-    loadCarsData(); // JSONデータを読み込み
+    loadCarsData();
     const sportsButton = document.querySelector("button[onclick=\"showCategory('sports', this)\"]");
     showCategory('sports', sportsButton);
 };
